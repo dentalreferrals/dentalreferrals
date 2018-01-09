@@ -310,6 +310,23 @@
                   <li>
                     <a href="#error-response-format" class="toc-h2 toc-link" data-title="Error Response Format">Error Response Format</a>
                   </li>
+                  <li>
+                    <a href="#error-codes" class="toc-h2 toc-link" data-title="Error Codes">Error Codes</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#updating-from-earlier-versions" class="toc-h1 toc-link" data-title="Updating From Earlier Versions">Updating From Earlier Versions</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#updating-from-version-1-of-the-api" class="toc-h2 toc-link" data-title="Updating from Version 1 of the API">Updating from Version 1 of the API</a>
+                  </li>
+                  <li>
+                    <a href="#authentication" class="toc-h2 toc-link" data-title="Authentication">Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#api-method-changes" class="toc-h2 toc-link" data-title="API Method Changes">API Method Changes</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -343,6 +360,11 @@
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/"</span>
 </code></pre>
+<blockquote>
+<p>Expected response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="err">status</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p>Make sure to replace <code>&lt;YOUR_API_KEY&gt;</code> with your actual API key.</p>
 </blockquote>
@@ -1017,6 +1039,11 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> -H <span class="s2">"Upload-Content-Type:image/png"</span> -H <span class="s2">"Upload-Filename:email_sample.png"</span> -H <span class="s2">"Upload-Kind:radiograph"</span> -H <span class="s2">"Upload-Date:29/01/2016"</span> -v -F <span class="nv">file</span><span class="o">=</span>@/home/user/file.png <span class="s2">"https://staging.dental-referrals.org/react4r/v2/fileupload/396/add_file"</span>
 </code></pre>
+<blockquote>
+<p>Expected response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="err">status</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>With the <code>FILEUPLOAD_ID</code> obtained from <a href="#prepare-fileupload">Prepare Fileupload</a> API call, this method allows to upload files and linked them all to the same <code>FILEUPLOAD_ID</code>.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST &lt;API_ENDPOINT&gt;/fileupload/&lt;FILEUPLOAD_ID&gt;/add_file</code></p>
@@ -1101,7 +1128,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 </span></code></pre>
 <p>If a request is invalid or is missing required parameters, a standard HTTP 400 response code will be returned. Additionally, a custom error message response will be returned with additional clarifications.</p>
 <h3 id='error-response-format'>Error Response Format</h3>
-<p>In case of an error, in addition to 400 status code, the response will contain the following fields:</p>
+<p>In case of an error, in addition to an error status code, the response will contain the following fields:</p>
 
 <table><thead>
 <tr>
@@ -1118,6 +1145,73 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <td>A human-readable description of the error.</td>
 </tr>
 </tbody></table>
+<h2 id='error-codes'>Error Codes</h2>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad parameter value or required parameter is missing. Check <code>message</code> for more details.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Authorization error. Make sure you are passing your API key as part of the <code>Authorization</code> header. Refer to <a href="#authentication">Authentication</a> section.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>An unhandled API error has occurred. Please contact <a href="mailto:office@dental-referrals.org">API administrators</a> to report.</td>
+</tr>
+</tbody></table>
+<h1 id='updating-from-earlier-versions'>Updating From Earlier Versions</h1><h2 id='updating-from-version-1-of-the-api'>Updating from Version 1 of the API</h2><h3 id='api-endpoints'>API Endpoints</h3>
+<p>We removed the <code>/refadmin/</code> portion from all our application URLs and the staging endpoint is now served via <code>HTTPS</code>. </p>
+
+<p><strong>So, the staging API endpoint used to be:</strong></p>
+
+<p><code>http://staging.dental-referrals.org/refadmin/react4r/v1/</code></p>
+
+<p><strong>and now becomes:</strong></p>
+
+<p><code>https://staging.dental-referrals.org/react4r/v2/</code></p>
+
+<p><br></p>
+
+<p><strong>The production API endpoint used to be:</strong></p>
+
+<p><code>https://app.dental-referrals.org/refadmin/react4r/v1/</code></p>
+
+<p><strong>and now becomes:</strong></p>
+
+<p><code>https://app.dental-referrals.org/react4r/v2/</code></p>
+<h2 id='authentication'>Authentication</h2>
+<p>We are moving the authentication from URL parameter to a header-based model.</p>
+
+<p>And so the old way of authentication:</p>
+
+<p><code>curl http://staging.dental-referrals.org/refadmin/react4r/v1/available_forms?api_key=&lt;YOUR_API_KEY&gt;</code></p>
+
+<p>Now becomes:</p>
+
+<p><code>curl -H &quot;Authorization: Token token=&lt;YOUR_API_KEY&gt;&quot; https://staging.dental-referrals.org/react4r/v2/available_forms</code></p>
+
+<p>This way of passing the API KEY in the header of the request applies to all API V2 methods.</p>
+<h2 id='api-method-changes'>API Method Changes</h2>
+<p>Previously existing API methods are backward-compatible and should just continue to work once URLs are changed and authentication mechanism updated:</p>
+
+<ul>
+<li><a href="#list-available-forms">List Available Forms</a></li>
+<li><a href="#referral-status">Referral Status</a></li>
+<li><a href="#batch-referral-status">Batch Referral Status</a></li>
+<li><a href="#referral-status-by-patient">Referral Status By Patient</a></li>
+<li><a href="#prepare-form">Prepare Form</a></li>
+<li><a href="#save-draft">Save Draft</a></li>
+</ul>
+
+<p>The only other change is that <a href="#save-draft">Save Draft</a> and <a href="#prepare-form">Prepare Form</a> methods now support an optional <code>fileupload_id</code> parameter.</p>
+
+<p>In addition to the existing methods, 2 new API methods have been introduced as a part of <a href="#uploading-files">Fileupload Functionality</a>.</p>
 <h1 id='change-log'>Change Log</h1>
 <table><thead>
 <tr>
