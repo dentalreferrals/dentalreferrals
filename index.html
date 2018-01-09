@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Dental Referrals REACT4R API</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,10 +211,7 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="shell">Sample API calls using cURL</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -225,277 +222,921 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#api-endpoints" class="toc-h1 toc-link" data-title="API Endpoints">API Endpoints</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#staging" class="toc-h2 toc-link" data-title="Staging">Staging</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#production" class="toc-h2 toc-link" data-title="Production">Production</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#header-based-authentication" class="toc-h2 toc-link" data-title="Header-based Authentication">Header-based Authentication</a>
+                  </li>
+                  <li>
+                    <a href="#one-api-key-per-medical-practice" class="toc-h2 toc-link" data-title="One API Key Per Medical Practice">One API Key Per Medical Practice</a>
+                  </li>
+                  <li>
+                    <a href="#authentication-errors" class="toc-h2 toc-link" data-title="Authentication Errors">Authentication Errors</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#prepared-forms-api" class="toc-h1 toc-link" data-title="Prepared Forms API">Prepared Forms API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#list-available-forms" class="toc-h2 toc-link" data-title="List Available Forms">List Available Forms</a>
+                  </li>
+                  <li>
+                    <a href="#prepare-form" class="toc-h2 toc-link" data-title="Prepare Form">Prepare Form</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#drafts-api" class="toc-h1 toc-link" data-title="Drafts API">Drafts API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#save-draft" class="toc-h2 toc-link" data-title="Save Draft">Save Draft</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#referrals-api" class="toc-h1 toc-link" data-title="Referrals API">Referrals API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#referral-status" class="toc-h2 toc-link" data-title="Referral Status">Referral Status</a>
+                  </li>
+                  <li>
+                    <a href="#batch-referral-status" class="toc-h2 toc-link" data-title="Batch Referral Status">Batch Referral Status</a>
+                  </li>
+                  <li>
+                    <a href="#referral-status-by-patient" class="toc-h2 toc-link" data-title="Referral Status By Patient">Referral Status By Patient</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#uploading-files" class="toc-h1 toc-link" data-title="Uploading Files">Uploading Files</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#prepare-fileupload" class="toc-h2 toc-link" data-title="Prepare Fileupload">Prepare Fileupload</a>
+                  </li>
+                  <li>
+                    <a href="#add-file" class="toc-h2 toc-link" data-title="Add File">Add File</a>
+                  </li>
+                  <li>
+                    <a href="#tying-everything-together" class="toc-h2 toc-link" data-title="Tying Everything Together">Tying Everything Together</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#webhooks" class="toc-h1 toc-link" data-title="Webhooks">Webhooks</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#retry-policy" class="toc-h2 toc-link" data-title="Retry policy">Retry policy</a>
+                  </li>
+                  <li>
+                    <a href="#accessing-pdf-exports" class="toc-h2 toc-link" data-title="Accessing PDF exports">Accessing PDF exports</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#error-handling" class="toc-h1 toc-link" data-title="Error Handling">Error Handling</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#error-response-format" class="toc-h2 toc-link" data-title="Error Response Format">Error Response Format</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#change-log" class="toc-h1 toc-link" data-title="Change Log">Change Log</a>
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='mailto:office@dental-referrals.org'>Sign Up for a Developer Key</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to Dental Referrals API V2 Documentation!</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>This page is a guide for software developers looking to integrate an external application with <a href="https://app.dental-referrals.org">Dental Referrals Web Application</a>.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
+<p>Each API method in this documentation comes with a sample command using <code>cURL</code>. You can view these code examples in the dark area to the right.</p>
+<h1 id='api-endpoints'>API Endpoints</h1><h3 id='staging'>Staging</h3>
+<p>While in development, please use the staging API endpoint:</p>
+
+<p><code>https://staging.dental-referrals.org/react4r/v2/</code></p>
+<h3 id='production'>Production</h3>
+<p>Production API calls should be made against the live application&#39;s endpoint:</p>
+
+<p><code>https://app.dental-referrals.org/react4r/v2/</code></p>
+<h1 id='authentication'>Authentication</h1><h3 id='header-based-authentication'>Header-based Authentication</h3>
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>To authorize your API calls, use:</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/"</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace <code>&lt;YOUR_API_KEY&gt;</code> with your actual API key.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>Dental Referrals API uses API keys to allow access to the API. You may request an API key by emailing <a href="mailto:office@dental-referrals.org">office@dental-referrals.org</a>.</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>Every request to the API must include an API key in the header of the request as follows:</p>
 
-<p><code>Authorization: meowmeowmeow</code></p>
+<p><code>Authorization: Token token=&lt;YOUR_API_KEY&gt;</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>YOUR_API_KEY</code> with your personal API key.
 </aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<aside class="notice">
+Please note that API keys are not shared between staging and production environments. You must request a separate API key for each environment.
+</aside>
+<h3 id='one-api-key-per-medical-practice'>One API Key Per Medical Practice</h3>
+<p>Each end user (Medical Practice) must obtain their own API key that will be linked to their data on our system. This ensures no unauthorized access happens between the two separate medical practices.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<aside class="warning">
+Thus any software using the Dental Referrals API must provide a way for the end user to specify their individual API key. No generic API key can be hard-coded into released software!
+</aside>
+<h3 id='authentication-errors'>Authentication Errors</h3>
+<p>If a request fails authentication for any reason, a HTTP 401 Not Authorized response is returned. </p>
+<h1 id='prepared-forms-api'>Prepared Forms API</h1>
+<p>A central use-case for the API is to transition patient data from an external system into medical forms inside <a href="https://app.dental-referrals.org">Dental Referrals Web Application</a> while saving the effort of copy-pasting the data between two systems.</p>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+<p>When used in a desktop application, a usual integration workflow consist of 2 steps:</p>
+
+<ol>
+<li><p>Make a request to Dental Referrals API, passing patient data in the body of the request. In response, receive a unique URL to a medical form page inside <a href="https://app.dental-referrals.org">Dental Referrals Web Application</a> - that URL when opened will have all the submitted data pre-populated into its fields.</p></li>
+<li><p>Use user’s default browser or a built-in web view to open the unique medical form URL received in step 1 for user to submit the rest of the referral data.</p></li>
+</ol>
+<h2 id='list-available-forms'>List Available Forms</h2><pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/available_forms"</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The above command returns a JSON array of form types:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="s2">"AdultRestorativeForm"</span><span class="p">,</span><span class="s2">"ChildOralCareForm"</span><span class="p">]</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
+<p>This API method lists all medical form types that are enabled for a given API key. One of these form types must be used for subsequent call to <a href="#prepare-form">Prepare Form</a> API method.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p><code>GET &lt;API_ENDPOINT&gt;/available_forms</code></p>
+<h3 id='request-parameters'>Request Parameters</h3>
+<p>Does not require any input parameters.</p>
+<h3 id='response-format'>Response Format</h3>
+<p>The response is an array of medical form types. See example response in the right side pane.</p>
+<h2 id='prepare-form'>Prepare Form</h2>
+<blockquote>
+<p>Prepare an Adult Restorative Referral form with pre-populated patient data:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> --data <span class="s2">"form_type=AdultRestorativeForm&amp;patient_title=Mr&amp;patient_first_name=John&amp;patient_last_name=Doe&amp;patient_identifier=1"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/prepare_form"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured as follows:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"prepared_form_url"</span><span class="p">:</span><span class="s2">"https://staging.dental-referrals.org/prepared_forms/show/d090e3dd-614f-47f3-8bc7-e403c1a2936e"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"urn"</span><span class="p">:</span><span class="s2">"TST0000001"</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"ptguid"</span><span class="p">:</span><span class="s2">"NDJhNDJhNTJlOTZmOTE5YTdmYTc="</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This API method prepares a medical form of a given type by pre-populating patient data into corresponding fields and assigning a unique URL to this pre-populated form.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST &lt;API_ENDPOINT&gt;/prepare_form</code></p>
+<h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
 <th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>system_type</td>
+<td>String</td>
+<td>No</td>
+<td>WD</td>
+<td>Identifies which system is using the API. One of: <code>WD</code>, <code>WT</code>, <code>PD</code>, <code>PC</code>, <code>DN</code>, <code>DT</code>.</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>form_type</td>
+<td>String</td>
+<td>Yes</td>
+<td></td>
+<td>Medical form type. Must be one of the types returned by <a href="#list-available-forms">Available Forms</a> API method</td>
+</tr>
+<tr>
+<td>patient_title</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s title. Must be one of: <code>Mr</code>, <code>Mrs</code>, <code>Miss</code>, <code>Master</code>, <code>Dr</code>.</td>
+</tr>
+<tr>
+<td>patient_first_name</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s first name.</td>
+</tr>
+<tr>
+<td>patient_last_name</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s last name.</td>
+</tr>
+<tr>
+<td>patient_dob</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient’s date of birth, in the following format: <code>DD/MM/YYYY</code>.</td>
+</tr>
+<tr>
+<td>patient_postcode</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s postcode.</td>
+</tr>
+<tr>
+<td>patient_address_line_1</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s address line 1. If provided, will be concatenated with the other <code>address_line_x</code> parameters into a single address field on the medical form.</td>
+</tr>
+<tr>
+<td>patient_address_line_2</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s address line 2. If provided, will be concatenated with the other <code>address_line_x</code> parameters into a single address field on the medical form.</td>
+</tr>
+<tr>
+<td>patient_address_line_3</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s address line 3. If provided, will be concatenated with the other <code>address_line_x</code> parameters into a single address field on the medical form.</td>
+</tr>
+<tr>
+<td>patient_town</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s town or city.</td>
+</tr>
+<tr>
+<td>patient_mobile_tel</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s mobile phone number.</td>
+</tr>
+<tr>
+<td>patient_home_tel</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s home phone number.</td>
+</tr>
+<tr>
+<td>patient_work_tel</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s work phone number</td>
+</tr>
+<tr>
+<td>patient_phone_number</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>If patient&#39;s phone number is present, but it is not clear if it&#39;s home, work, or mobile number, the phone number should go into this field.</td>
+</tr>
+<tr>
+<td>permission_sms</td>
+<td>Numeric</td>
+<td>No</td>
+<td></td>
+<td>One of: <code>0</code>, <code>1</code>. The <code>1</code> means that we have permission to contact the patient on their mobile number via SMS.</td>
+</tr>
+<tr>
+<td>nhs_number</td>
+<td>Numeric</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s NHS Number.</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient’s gender. One of: <code>M</code>, <code>MALE</code>, <code>F</code>, <code>FEMALE</code>.</td>
+</tr>
+<tr>
+<td>patient_gp_name</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s general practitioner&#39;s name.</td>
+</tr>
+<tr>
+<td>patient_gp_postcode</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s general practitioner&#39;s postcode.</td>
+</tr>
+<tr>
+<td>patient_gp_street_address</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s general practitioner&#39;s street address.</td>
+</tr>
+<tr>
+<td>patient_gp_street_address</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s general practitioner&#39;s street address.</td>
+</tr>
+<tr>
+<td>patient_gp_town</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Patient&#39;s general practitioner&#39;s city or town.</td>
+</tr>
+<tr>
+<td>referrer_gdc</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Referrer&#39;s GDC number.</td>
+</tr>
+<tr>
+<td>referrer_name</td>
+<td>String</td>
+<td>No</td>
+<td></td>
+<td>Referrer&#39;s name.</td>
+</tr>
+<tr>
+<td>urgent</td>
+<td>Numeric</td>
+<td>No</td>
+<td></td>
+<td>If set to <code>1</code>, the resulting medical form will have the Care Type set to <code>Urgent</code>, otherwise <code>Routine</code></td>
+</tr>
+<tr>
+<td>medical_history_drugs</td>
+<td>Text</td>
+<td>No</td>
+<td></td>
+<td>List of patient&#39;s current medications in free text format.</td>
+</tr>
+<tr>
+<td>medical_history_text</td>
+<td>Text</td>
+<td>No</td>
+<td></td>
+<td>Medical alert information or additional medical history information, in free text form.</td>
+</tr>
+<tr>
+<td>medical_forms_as_single_file</td>
+<td>Numeric</td>
+<td>No</td>
+<td></td>
+<td>If set to <code>1</code>, the exported PDF medical forms will be merged into one file when notifying the <code>files_ready_webhook_url</code>. Check out <a href="#webhooks">Webhooks</a> for more.</td>
+</tr>
+<tr>
+<td>files_ready_webhook_url</td>
+<td>Text</td>
+<td>No</td>
+<td></td>
+<td>A callback URL to trigger when the PDF forms become available for this referral. For payload format, please see <a href="#webhooks">Webhooks</a> section.</td>
+</tr>
+<tr>
+<td>patient_identifier</td>
+<td>String</td>
+<td></td>
+<td>No</td>
+<td>Internal patient identifier within your system. If provided, this will be appended to your <code>API key</code>, out of which a <code>Base64</code> hash will be produced and stored as <code>PTGUID</code> (<code>Patient GUID</code>) within our system. This value is returned as part of the response and can later be used to query the status of submitted referral, same as the <code>URN</code> value.</td>
+</tr>
+<tr>
+<td>fileupload_id</td>
+<td>Numeric</td>
+<td>No</td>
+<td></td>
+<td>An ID of the fileupload entity with pre-uploaded files to be tied to this referral. For more on fileuploads, refer to <a href="#uploading-files">Uploading Files</a>.</td>
 </tr>
 </tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<h3 id='response-format-2'>Response Format</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>One of: <code>success</code> or <code>error</code></td>
+</tr>
+<tr>
+<td>prepared_form_url</td>
+<td>String</td>
+<td>The URL to the web page with a prepared medical form, where patient data supplied in the request is pre-filled into corresponding fields within the form.</td>
+</tr>
+<tr>
+<td>urn</td>
+<td>String</td>
+<td><code>URN</code> code of the referral that will be associated with this record once the prepared form is submitted by the user</td>
+</tr>
+<tr>
+<td>ptguid</td>
+<td>String</td>
+<td><code>PTGUID</code> (<code>Patient GUID</code>) value that was created as a <code>Base64</code> hash of the <code>API KEY</code> + <code>patient_identifier</code> request parameter. This parameter will only be present in the response if patient_identifier was provided to the <a href="#prepare-form">Prepare Form</a> request.</td>
+</tr>
+</tbody></table>
+<h1 id='drafts-api'>Drafts API</h1><h2 id='save-draft'>Save Draft</h2>
+<blockquote>
+<p>Prepare an Adult Restorative Referral form with pre-populated patient data:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> --data <span class="s2">"form_type=AdultRestorativeForm&amp;patient_title=Mr&amp;patient_first_name=John&amp;patient_last_name=Doe&amp;patient_identifier=1"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/save_draft"</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The above command returns JSON structured as follows:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"draft_id"</span><span class="p">:</span><span class="mi">11047</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"urn"</span><span class="p">:</span><span class="s2">"TST0000001"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ptguid"</span><span class="p">:</span><span class="s2">"NDJhNDJhNTJlOTZmOTE5YTdmYTc="</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
+<p>This API method allows to save drafts of medical forms within Dental Referrals Web Application, linking these drafts to a user&#39;s account that is tied to the API key.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST &lt;API_ENDPOINT&gt;/save_draft</code></p>
+<h3 id='request-parameters'>Request Parameters</h3>
+<p>Exactly the same request parameters are available as for the <a href="#prepare-form">Prepare Form</a> API method.</p>
+<h3 id='response-format'>Response Format</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>One of: <code>success</code> or <code>error</code></td>
+</tr>
+<tr>
+<td>draft_id</td>
+<td>Numeric</td>
+<td>The unique numeric reference of the draft within Dental Referrals Web Application.</td>
+</tr>
+<tr>
+<td>urn</td>
+<td>String</td>
+<td><code>URN</code> code of the referral that will be associated with this record once the draft is submitted by the user</td>
+</tr>
+<tr>
+<td>ptguid</td>
+<td>String</td>
+<td><code>PTGUID</code> (<code>Patient GUID</code>) value that was created as a <code>Base64</code> hash of the <code>API KEY</code> + <code>patient_identifier</code> request parameter. This parameter will only be present in the response if patient_identifier was provided to the <a href="#save-draft">Save Draft</a> request.</td>
+</tr>
+</tbody></table>
+<h1 id='referrals-api'>Referrals API</h1><h2 id='referral-status'>Referral Status</h2>
+<blockquote>
+<p>Check the status of a single Referral using a URN code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/referral_status?urn=TST0000001"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured as follows:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"referral_status"</span><span class="p">:</span><span class="s2">"Sent to: St Clements Dental Suite - Mr E Harunani"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"referrer_name"</span><span class="p">:</span><span class="s2">"Nitin Joshi"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"referral_reason"</span><span class="p">:</span><span class="s2">"Minor Oral Surgery"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"referral_files"</span><span class="p">:[</span><span class="s2">"LINK_1"</span><span class="p">,</span><span class="s2">"LINK_2"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+</span></code></pre>
+<p>Use this API method to check the status of one specific referral that:</p>
+
+<ol>
+<li>has been submitted through this API</li>
+<li>has been submitted using the API key linked to the same user that the API key for this request</li>
+</ol>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET &lt;API_ENDPOINT&gt;/referral_status</code></p>
+<h3 id='request-parameters'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>urn</td>
+<td>String</td>
+<td>One of: <code>urn</code>, <code>ptguid</code> is required</td>
+<td><code>URN</code> code of the referral to return the status for.</td>
+</tr>
+<tr>
+<td>ptguid</td>
+<td>String</td>
+<td>One of: <code>urn</code>, <code>ptguid</code> is required</td>
+<td><code>PTGUID</code> (<code>Patient GUID</code>) code of the referral to return the status for.</td>
+</tr>
+</tbody></table>
+<h3 id='response-format'>Response Format</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>One of: <code>success</code> or <code>error</code> - indicates whether your API request is successful or not.</td>
+</tr>
+<tr>
+<td>referral_urn</td>
+<td>String</td>
+<td>Unique 10-symbol identifier of the referral within Dental Referrals online system.</td>
+</tr>
+<tr>
+<td>referral_status</td>
+<td>String</td>
+<td>The current status of this referral in Dental Referrals online system.</td>
+</tr>
+<tr>
+<td>referral_name</td>
+<td>String</td>
+<td>Name of the referring dentist.</td>
+</tr>
+<tr>
+<td>referral_reason</td>
+<td>String</td>
+<td>The reason this referral was submitted.</td>
+</tr>
+<tr>
+<td>referral_files</td>
+<td>Array of Strings</td>
+<td>Unique 10-symbol identifier of the referral within Dental Referrals online system.</td>
+</tr>
+</tbody></table>
+<h2 id='batch-referral-status'>Batch Referral Status</h2>
+<blockquote>
+<p>Check the status of a batch of recent referrals</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/batch_referral_status?count=2"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured as follows:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"referral_data"</span><span class="p">:</span><span class="w"> 
+    </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"referral_urn"</span><span class="p">:</span><span class="s2">"TST0000001"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"referral_status"</span><span class="p">:</span><span class="s2">"Entered on System"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"referrer_name"</span><span class="p">:</span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"referral_reason"</span><span class="p">:</span><span class="s2">"Restorative"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"referral_files"</span><span class="p">:[</span><span class="s2">"LINK_1"</span><span class="p">,</span><span class="s2">"LINK_2"</span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+
+        </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"referral_urn"</span><span class="p">:</span><span class="s2">"TST0000002"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"referral_status"</span><span class="p">:</span><span class="s2">"Sent to: St Clements Dental Suite"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"referrer_name"</span><span class="p">:</span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"referral_reason"</span><span class="p">:</span><span class="s2">"Restorative"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"referral_files"</span><span class="p">:[</span><span class="s2">"LINK_1"</span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Use this API method to check the status of up to 100 referrals most recently submitted through the API using the given API key.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p><code>GET &lt;API_ENDPOINT&gt;/batch_referral_status</code></p>
+<h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Value Bounds</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>count</td>
+<td>Numeric</td>
+<td>Yes</td>
+<td>If larger than 100, will be set to 100 anyway</td>
+<td>The number of most recent referrals to return statuses for.</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<h3 id='response-format-2'>Response Format</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>One of: <code>success</code> or <code>error</code> - indicates whether your API request is successful or not.</td>
+</tr>
+<tr>
+<td>referral_data</td>
+<td>JSON Array</td>
+<td>A JSON array of referral statuses, each status - a JSON object with the following fields:<br><code>referral_urn</code> - Unique 10-symbol identifier of the referral within Dental Referrals online system.<br><code>referral_status</code> - The current status of this referral in Dental Referrals online system.<br><code>referrer_name</code> - Name of the referring dentist.<br><code>referral_reason</code> - The reason this referral was submitted<br><code>referral_files</code> - an array of URLs to PDF files for this referral.</td>
+</tr>
+</tbody></table>
+<h2 id='referral-status-by-patient'>Referral Status By Patient</h2>
+<blockquote>
+<p>Check the status of all referrals that belong to a patient, using PTGUID</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/patient_referrals?count=2&amp;ptguid=NDJhNDJhNTJlOTZmOTE5YTdmYTc="</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The above command returns JSON structured as follows:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"referral_data"</span><span class="p">:</span><span class="w"> 
+    </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"referral_urn"</span><span class="p">:</span><span class="s2">"TST0000001"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"referral_status"</span><span class="p">:</span><span class="s2">"Entered on System"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"referrer_name"</span><span class="p">:</span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"referral_reason"</span><span class="p">:</span><span class="s2">"Restorative"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"referral_files"</span><span class="p">:[</span><span class="s2">"LINK_1"</span><span class="p">,</span><span class="s2">"LINK_2"</span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+
+        </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"referral_urn"</span><span class="p">:</span><span class="s2">"TST0000002"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"referral_status"</span><span class="p">:</span><span class="s2">"Sent to: St Clements Dental Suite"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"referrer_name"</span><span class="p">:</span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"referral_reason"</span><span class="p">:</span><span class="s2">"Restorative"</span><span class="p">,</span><span class="w"> 
+        </span><span class="s2">"referral_files"</span><span class="p">:[</span><span class="s2">"LINK_1"</span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
+<p>Use this API method to check the status of most recent referrals submitted for a given <code>PTGUID</code> (which is created as a <code>Base64</code> of an API key and <code>patient_identifier</code> parameter used in <a href="#prepare-form">Prepare Form</a> and <a href="#save-draft">Save Draft</a> API calls.)</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<p><code>GET &lt;API_ENDPOINT&gt;/patient_referrals</code></p>
+<h3 id='request-parameters-3'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Value Bounds</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>ptguid</td>
+<td>String</td>
+<td>Yes</td>
+<td></td>
+<td></td>
+<td><code>PTGUID</code> (<code>Patient GUID</code>) code of the referral to return the status for.</td>
+</tr>
+<tr>
+<td>count</td>
+<td>Numeric</td>
+<td>No</td>
+<td>100</td>
+<td>If larger than 100, will be set to 100 anyway</td>
+<td>Maximum number of recent patient&#39;s referrals to return statuses for.</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
+<h3 id='response-format-3'>Response Format</h3>
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request sucks.</td>
+<td>status</td>
+<td>String</td>
+<td>One of: <code>success</code> or <code>error</code> - indicates whether your API request is successful or not.</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>referral_data</td>
+<td>JSON Array</td>
+<td>A JSON array of referral statuses, each status - a JSON object with the following fields:<br><code>referral_urn</code> - Unique 10-symbol identifier of the referral within Dental Referrals online system.<br><code>referral_status</code> - The current status of this referral in Dental Referrals online system.<br><code>referrer_name</code> - Name of the referring dentist.<br><code>referral_reason</code> - The reason this referral was submitted<br><code>referral_files</code> - an array of URLs to PDF files for this referral.</td>
+</tr>
+</tbody></table>
+<h1 id='uploading-files'>Uploading Files</h1>
+<p>Both <a href="#prepare-form">Prepare Form</a> and <a href="#save-draft">Save Draft</a> API methods allow an optional <code>fileupload_id</code> parameter that allows attaching files to the referral. In order to attach files, they must be pre-uploaded before making a call to <a href="#prepare-form">Prepare Form</a> or <a href="#save-draft">Save Draft</a> API methods - so that when a medical form page opens, the user can see the files that were already uploaded.</p>
+
+<p><strong>The steps needed to upload files along with referral data are:</strong></p>
+
+<ol>
+<li><p>Make a call to <a href="#prepare-fileupload">Prepare Fileupload</a> API method and receive an ID of newly created <code>fileupload</code> entity in response.</p></li>
+<li><p>Use the <code>&lt;FILEUPLOAD_ID&gt;</code> obtained in step 1 to upload actual files to the server.</p></li>
+<li><p>Supply the <code>&lt;FILEUPLOAD_ID&gt;</code> as the <code>fileupload_id</code> parameter to the <a href="#prepare-form">Prepare Form</a> and <a href="#save-draft">Save Draft</a> API methods.</p></li>
+</ol>
+<h2 id='prepare-fileupload'>Prepare Fileupload</h2>
+<blockquote>
+<p>Create a fileupload entity, to which further uploads will be linked:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/prepare_fileupload"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured as follows:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fileupload_id"</span><span class="p">:</span><span class="mi">396</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Prepares a fileupload entity to link further uploads to. The 396 is the <code>FILEUPLOAD_ID</code> to be used in the call to <a href="#add-file">Add File</a> API method.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET|POST &lt;API_ENDPOINT&gt;/prepare_fileupload</code></p>
+<h3 id='request-parameters'>Request Parameters</h3>
+<p>Does not require any request parameters.</p>
+<h3 id='response-format'>Response Format</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>One of: <code>success</code> or <code>error</code></td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>filupload_id</td>
+<td>Numeric</td>
+<td>The <code>FILEUPLOAD_ID</code> to be used in the call to <a href="#add-file">Add File</a> API method</td>
+</tr>
+</tbody></table>
+<h2 id='add-file'>Add File</h2>
+<blockquote>
+<p>Upload a file and link it to a previously prepared fileupload enpoint:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> -H <span class="s2">"Upload-Content-Type:image/png"</span> -H <span class="s2">"Upload-Filename:email_sample.png"</span> -H <span class="s2">"Upload-Kind:radiograph"</span> -H <span class="s2">"Upload-Date:29/01/2016"</span> -v -F <span class="nv">file</span><span class="o">=</span>@/home/user/file.png <span class="s2">"https://staging.dental-referrals.org/react4r/v2/fileupload/396/add_file"</span>
+</code></pre>
+<p>With the <code>FILEUPLOAD_ID</code> obtained from <a href="#prepare-fileupload">Prepare Fileupload</a> API call, this method allows to upload files and linked them all to the same <code>FILEUPLOAD_ID</code>.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST &lt;API_ENDPOINT&gt;/fileupload/&lt;FILEUPLOAD_ID&gt;/add_file</code></p>
+<h3 id='allowed-headers'>Allowed Headers:</h3>
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>Upload-Content-Type</code></td>
+<td>Yes</td>
+<td></td>
+<td>MIME type of the uploaded file.</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td><code>Upload-Filename</code></td>
+<td>Yes</td>
+<td></td>
+<td>Name of the original file, with extension.</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td><code>Upload-Kind</code></td>
+<td>No</td>
+<td><code>other</code></td>
+<td>Type of the upload. At the moment, only 2 values are allowed: <code>radiograph</code> and <code>other</code>.</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td><code>Upload-Date</code></td>
+<td>Required if <code>Upload-Kind</code> set to <code>radiograph</code></td>
+<td></td>
+<td>Date when the radiograph has been taken, in <code>DD/MM/YYYY</code> format.</td>
+</tr>
+</tbody></table>
+<h3 id='request-parameters-2'>Request Parameters</h3>
+<p>Does not require any request parameters.</p>
+<h3 id='response-format-2'>Response Format</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>String</td>
+<td>One of: <code>success</code> or <code>error</code></td>
+</tr>
+</tbody></table>
+<h2 id='tying-everything-together'>Tying Everything Together</h2>
+<p>Now that files are uploaded to the server and tied to a single <code>&lt;FILEUPLOAD_ID&gt;</code>, simply use that <code>&lt;FILEUPLOAD_ID&gt;</code> as the value for <code>fileupload_id</code> parameter in <a href="#prepare-form">Prepare Form</a> and <a href="#save-draft">Save Draft</a> API methods.</p>
+<h1 id='webhooks'>Webhooks</h1>
+<p>When a referral is submitted to Dental Referrals Web Application, all medical forms are exported to PDF format and attached to the referral. The export to PDF happens in background queue after the referral is submitted and so isn&#39;t immediatelly available to the user. In order to assist the with collection of exported PDF forms, the <a href="#prepare-form">Prepare Form</a> and <a href="#save-draft">Save Draft</a> API methods accept a parameter called <code>files_ready_webhook_url</code> - a URL to trigger when the PDF forms become available for referrals submitted through the API.</p>
+
+<p>If <code>files_ready_webhook_url</code> is provided during a call to <a href="#prepare-form">Prepare Form</a> or <a href="#save-draft">Save Draft</a> API method, when the PDF files become available, the system will send a POST request to the specified URL with the following payload in JSON format: </p>
+
+<p><code>{
+    &quot;urn&quot;:&quot;&lt;URN_OF_REFERRAL&gt;&quot;, 
+    &quot;files&quot;: [&quot;&lt;URL_OF_THE_PDF_FORM_1&gt;&quot;, &quot;&lt;URL_OF_THE_PDF_FORM_2&gt;&quot;, ... ]
+}</code></p>
+<h3 id='retry-policy'>Retry policy</h3>
+<p>If the webhook URL fails or returns a response code other than 200, we will retry 3 more times - in an hour, in 4 hours, and then in a day.</p>
+<h3 id='accessing-pdf-exports'>Accessing PDF exports</h3>
+<p>In order to fetch the attachments using URLs that are sent to the <code>files_ready_webhook_url</code>, include an <code>Authorization: Token token=&lt;YOUR_API_KEY&gt;</code> header along with your request.</p>
+<h1 id='error-handling'>Error Handling</h1>
+<blockquote>
+<p>Example of failed API request: API key not provided</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://staging.dental-referrals.org/react4r/v2/available_forms"</span>
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"error"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Not Authorized. Check that you are providing a valid API key and that you have access to requested resource."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>If a request is invalid or is missing required parameters, a standard HTTP 400 response code will be returned. Additionally, a custom error message response will be returned with additional clarifications.</p>
+<h3 id='error-response-format'>Error Response Format</h3>
+<p>In case of an error, in addition to 400 status code, the response will contain the following fields:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status</td>
+<td>The value will be set to &quot;error&quot;.</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td>message</td>
+<td>A human-readable description of the error.</td>
 </tr>
+</tbody></table>
+<h1 id='change-log'>Change Log</h1>
+<table><thead>
 <tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<th>Date</th>
+<th>Author</th>
+<th>Description</th>
 </tr>
+</thead><tbody>
 <tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>9 Jan 2018</td>
+<td>Irina Zayats</td>
+<td>Initial version of documentation</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="shell">Sample API calls using cURL</a>
           </div>
       </div>
     </div>
