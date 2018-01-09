@@ -17,6 +17,7 @@ includes:
   - fileuploads
   - webhooks
   - errors
+  - update_notes
   - change_log
 
 search: true

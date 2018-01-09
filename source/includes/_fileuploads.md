@@ -53,6 +53,12 @@ filupload_id | Numeric | The `FILEUPLOAD_ID` to be used in the call to [Add File
 curl -H "Authorization: Token token=<YOUR_API_KEY>" -H "Upload-Content-Type:image/png" -H "Upload-Filename:email_sample.png" -H "Upload-Kind:radiograph" -H "Upload-Date:29/01/2016" -v -F file=@/home/user/file.png "https://staging.dental-referrals.org/react4r/v2/fileupload/396/add_file"
 ```
 
+> Expected response:
+
+```json
+{status: "success"}
+```
+
 With the `FILEUPLOAD_ID` obtained from [Prepare Fileupload](#prepare-fileupload) API call, this method allows to upload files and linked them all to the same `FILEUPLOAD_ID`.
 
 ### HTTP Request
