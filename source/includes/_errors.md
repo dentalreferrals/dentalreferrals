@@ -1,20 +1,26 @@
-# Errors
+# Error Handling
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
+> Example of failed API request: API key not provided
 
-The Kittn API uses the following error codes:
+```shell
+curl "https://staging.dental-referrals.org/react4r/v2/available_forms"
+```
+> Response:
 
+```json
+{
+    "status":"error",
+    "message":"Not Authorized. Check that you are providing a valid API key and that you have access to requested resource."
+}
+```
 
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request sucks.
-401 | Unauthorized -- Your API key is wrong.
-403 | Forbidden -- The kitten requested is hidden for administrators only.
-404 | Not Found -- The specified kitten could not be found.
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method.
-406 | Not Acceptable -- You requested a format that isn't json.
-410 | Gone -- The kitten requested has been removed from our servers.
-418 | I'm a teapot.
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarily offline for maintenance. Please try again later.
+If a request is invalid or is missing required parameters, a standard HTTP 400 response code will be returned. Additionally, a custom error message response will be returned with additional clarifications.
+
+### Error Response Format
+
+In case of an error, in addition to 400 status code, the response will contain the following fields:
+
+Field | Description
+--------- | -----------
+status  | The value will be set to "error".
+message | A human-readable description of the error.
