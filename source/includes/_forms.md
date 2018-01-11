@@ -6,7 +6,7 @@ When used in a desktop application, a usual integration workflow consist of 2 st
 
 1. Make a request to Dental Referrals API, passing patient data in the body of the request. In response, receive a unique URL to a medical form page inside <a href="https://app.dental-referrals.org" target="_blank">Dental Referrals Web Application</a> - that URL when opened will have all the submitted data pre-populated into its fields.
 
-2. Use user’s default browser or a built-in web view to open the unique medical form URL received in step 1 for user to submit the rest of the referral data.
+2. Use user's default browser or a built-in web view to open the unique medical form URL received in step 1 for user to submit the rest of the referral data.
 
 <aside class="notice">
    The URL of the prepared form contains a unique token so that when the URL is opened in the browser for the first time, it authenticates the user that's linked to the API key for a 24-hour in browser sesstion. The authentication token expires on first use, so if the URL is copy-pasted into a different browser, the system will as the user to authenticate.
