@@ -8,15 +8,21 @@
 curl -H "Authorization: Token token=<YOUR_API_KEY>" "https://staging.dental-referrals.org/react4r/v2/"
 ```
 
+> Make sure to replace `<YOUR_API_KEY>` with your actual API key.
+
+> For example, if you API key is `42a42a42a42a424a2aa4`, the call becomes:
+
+```shell
+curl -H "Authorization: Token token=42a42a42a42a424a2aa4" "https://staging.dental-referrals.org/react4r/v2/"
+```
+
 > Expected response:
 
 ```json
-{status: "success"}
+{"status": "success"}
 ```
 
-> Make sure to replace `<YOUR_API_KEY>` with your actual API key.
-
-Dental Referrals API uses API keys to allow access to the API. You may request an API key by emailing [office@dental-referrals.org](mailto:office@dental-referrals.org).
+Dental Referrals API uses API keys to allow access to the API. An API key is a 10-character hexadecimal value like `42a42a42a42a424a2aa4`.You may request an API key by emailing [office@dental-referrals.org](mailto:office@dental-referrals.org).
 
 Every request to the API must include an API key in the header of the request as follows:
 

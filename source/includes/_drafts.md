@@ -19,7 +19,7 @@ curl -H "Authorization: Token token=<YOUR_API_KEY>" --data "form_type=AdultResto
 }
 ```
 
-This API method allows to save drafts of medical forms within Dental Referrals Web Application, linking these drafts to a user's account that is tied to the API key.
+This API method allows to save drafts of medical forms within <a href="https://app.dental-referrals.org" target="_blank">Dental Referrals Web Application</a>, linking these drafts to a user's account that is tied to the API key.
 
 ### HTTP Request
 
@@ -33,7 +33,7 @@ Exactly the same request parameters are available as for the [Prepare Form](#pre
 
 Parameter | Type | Description
 --------- | ---- | ------------
-status | String | One of: `success` or `error`
-draft_id | Numeric | The unique numeric reference of the draft within Dental Referrals Web Application.
-urn | String | `URN` code of the referral that will be associated with this record once the draft is submitted by the user
+status | String | One of: `success` or `error`.
+draft_id | Numeric | The unique numeric reference of the draft within <a href="https://app.dental-referrals.org" target="_blank">Dental Referrals Web Application</a>.
+urn | String | `URN` code of the referral that will be associated with this record once the draft is submitted by the user.
 ptguid | String | `PTGUID` (`Patient GUID`) value that was created as a `Base64` hash of the `API KEY` + `patient_identifier` request parameter. This parameter will only be present in the response if patient_identifier was provided to the [Save Draft](#save-draft) request.

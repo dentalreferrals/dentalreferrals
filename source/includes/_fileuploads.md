@@ -15,7 +15,7 @@ Both [Prepare Form](#prepare-form) and [Save Draft](#save-draft) API methods all
 > Create a fileupload entity, to which further uploads will be linked:
 
 ```shell
-curl -H "Authorization: Token token=<YOUR_API_KEY" "https://staging.dental-referrals.org/react4r/v2/prepare_fileupload"
+curl -H "Authorization: Token token=<YOUR_API_KEY>" "https://staging.dental-referrals.org/react4r/v2/prepare_fileupload"
 ```
 
 > The above command returns JSON structured as follows:
@@ -41,8 +41,8 @@ Does not require any request parameters.
 
 Parameter | Type | Description
 --------- | ---- | ------------
-status | String | One of: `success` or `error`
-filupload_id | Numeric | The `FILEUPLOAD_ID` to be used in the call to [Add File](#add-file) API method
+status | String | One of: `success` or `error`.
+fileupload_id | Numeric | The `FILEUPLOAD_ID` to be used in the call to [Add File](#add-file) API method.
 
 
 ## Add File
@@ -50,13 +50,13 @@ filupload_id | Numeric | The `FILEUPLOAD_ID` to be used in the call to [Add File
 > Upload a file and link it to a previously prepared fileupload enpoint:
 
 ```shell
-curl -H "Authorization: Token token=<YOUR_API_KEY>" -H "Upload-Content-Type:image/png" -H "Upload-Filename:email_sample.png" -H "Upload-Kind:radiograph" -H "Upload-Date:29/01/2016" -v -F file=@/home/user/file.png "https://staging.dental-referrals.org/react4r/v2/fileupload/396/add_file"
+curl -H "Authorization: Token token=<YOUR_API_KEY>" -H "Upload-Content-Type:image/jpeg" -H "Upload-Filename:file.jpg" -H "Upload-Kind:radiograph" -H "Upload-Date:29/01/2016" -v -F file=@/home/user/file.jpg "https://staging.dental-referrals.org/react4r/v2/fileupload/396/add_file"
 ```
 
 > Expected response:
 
 ```json
-{status: "success"}
+{"status": "success"}
 ```
 
 With the `FILEUPLOAD_ID` obtained from [Prepare Fileupload](#prepare-fileupload) API call, this method allows to upload files and linked them all to the same `FILEUPLOAD_ID`.
@@ -69,7 +69,7 @@ With the `FILEUPLOAD_ID` obtained from [Prepare Fileupload](#prepare-fileupload)
 
 Header | Required | Default | Description
 ------ | -------- | ------- | ------------
-`Upload-Content-Type` | Yes | | MIME type of the uploaded file.
+`Upload-Content-Type` | Yes | | MIME type of the uploaded file. At the moment, only `JPEG` files are supported, so must be set to `image/jpeg`.
 `Upload-Filename`| Yes | | Name of the original file, with extension.
 `Upload-Kind` | No | `other` | Type of the upload. At the moment, only 2 values are allowed: `radiograph` and `other`.
 `Upload-Date`| Required if `Upload-Kind` set to `radiograph` | | Date when the radiograph has been taken, in `DD/MM/YYYY` format.
@@ -82,7 +82,7 @@ Does not require any request parameters.
 
 Parameter | Type | Description
 --------- | ---- | ------------
-status | String | One of: `success` or `error`
+status | String | One of: `success` or `error`.
 
 ## Tying Everything Together
 

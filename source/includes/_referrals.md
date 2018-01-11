@@ -17,15 +17,17 @@ curl -H "Authorization: Token token=<YOUR_API_KEY>" "https://staging.dental-refe
     "referral_status":"Sent to: St Clements Dental Suite - Mr E Harunani",
     "referrer_name":"Nitin Joshi",
     "referral_reason":"Minor Oral Surgery",
-    "referral_files":["LINK_1","LINK_2"]
+    "referral_files":[
+    	"https://staging.dental-referrals.org/documents/TST0000001.pdf",
+    	"https://staging.dental-referrals.org/documents/TST0000001_MH.pdf"]
 }
 
 ```
 
 Use this API method to check the status of one specific referral that:
 
-1. has been submitted through this API
-2. has been submitted using the API key linked to the same user that the API key for this request
+- has been submitted through this API
+- has been submitted using the API key linked to the same user that the API key for this request
 
 ### HTTP Request
 
@@ -35,8 +37,7 @@ Use this API method to check the status of one specific referral that:
 
 Parameter | Type | Required | Description
 --------- | ---- | ---------| -----------
-urn | String | One of: `urn`, `ptguid` is required | `URN` code of the referral to return the status for.
-ptguid | String | One of: `urn`, `ptguid` is required | `PTGUID` (`Patient GUID`) code of the referral to return the status for.
+urn | String | Yes | `URN` code of the referral to return the status for.
 
 ### Response Format
 
@@ -73,7 +74,10 @@ curl -H "Authorization: Token token=<YOUR_API_KEY>" "https://staging.dental-refe
         "referral_status":"Entered on System", 
         "referrer_name":"Jane Doe", 
         "referral_reason":"Restorative", 
-        "referral_files":["LINK_1","LINK_2"]
+        "referral_files":[
+        	"https://staging.dental-referrals.org/documents/TST0000001.pdf",
+        	"https://staging.dental-referrals.org/documents/TST0000001_MH.pdf"
+        	]
         },
 
 		{
@@ -81,7 +85,9 @@ curl -H "Authorization: Token token=<YOUR_API_KEY>" "https://staging.dental-refe
 		"referral_status":"Sent to: St Clements Dental Suite", 
 		"referrer_name":"Jane Doe", 
 		"referral_reason":"Restorative", 
-		"referral_files":["LINK_1"]
+		"referral_files":[
+			"https://staging.dental-referrals.org/documents/TST0000002.pdf"
+			]
 		}
 	]
 }
@@ -104,7 +110,7 @@ count | Numeric | Yes | If larger than 100, will be set to 100 anyway | The numb
 Parameter | Type | Description
 --------- | ---- | ------------
 status | String | One of: `success` or `error` - indicates whether your API request is successful or not.
-referral_data | JSON Array | A JSON array of referral statuses, each status - a JSON object with the following fields:<br>`referral_urn` - Unique 10-symbol identifier of the referral within Dental Referrals online system.<br>`referral_status` - The current status of this referral in Dental Referrals online system.<br>`referrer_name` - Name of the referring dentist.<br>`referral_reason` - The reason this referral was submitted<br>`referral_files` - an array of URLs to PDF files for this referral.
+referral_data | JSON Array | A JSON array of referral statuses, each status - a JSON object with the following fields:<br>`referral_urn` - Unique 10-symbol identifier of the referral within Dental Referrals online system.<br>`referral_status` - The current status of this referral in Dental Referrals online system.<br>`referrer_name` - Name of the referring dentist.<br>`referral_reason` - The reason this referral was submitted.<br>`referral_files` - An array of URLs to PDF files for this referral.
 
 
 
@@ -128,7 +134,10 @@ curl -H "Authorization: Token token=<YOUR_API_KEY>" "https://staging.dental-refe
         "referral_status":"Entered on System", 
         "referrer_name":"Jane Doe", 
         "referral_reason":"Restorative", 
-        "referral_files":["LINK_1","LINK_2"]
+        "referral_files":[
+        	"https://staging.dental-referrals.org/documents/TST0000001.pdf",
+        	"https://staging.dental-referrals.org/documents/TST0000001_MH.pdf"
+        	]
         },
 
 		{
@@ -136,7 +145,9 @@ curl -H "Authorization: Token token=<YOUR_API_KEY>" "https://staging.dental-refe
 		"referral_status":"Sent to: St Clements Dental Suite", 
 		"referrer_name":"Jane Doe", 
 		"referral_reason":"Restorative", 
-		"referral_files":["LINK_1"]
+		"referral_files":[
+			"https://staging.dental-referrals.org/documents/TST0000001.pdf"
+		]
 		}
 	]
 }
@@ -160,4 +171,4 @@ count | Numeric | No | 100 | If larger than 100, will be set to 100 anyway | Max
 Parameter | Type | Description
 --------- | ---- | ------------
 status | String | One of: `success` or `error` - indicates whether your API request is successful or not.
-referral_data | JSON Array | A JSON array of referral statuses, each status - a JSON object with the following fields:<br>`referral_urn` - Unique 10-symbol identifier of the referral within Dental Referrals online system.<br>`referral_status` - The current status of this referral in Dental Referrals online system.<br>`referrer_name` - Name of the referring dentist.<br>`referral_reason` - The reason this referral was submitted<br>`referral_files` - an array of URLs to PDF files for this referral.
+referral_data | JSON Array | A JSON array of referral statuses, each status - a JSON object with the following fields:<br>`referral_urn` - Unique 10-symbol identifier of the referral within Dental Referrals online system.<br>`referral_status` - The current status of this referral in Dental Referrals online system.<br>`referrer_name` - Name of the referring dentist.<br>`referral_reason` - The reason this referral was submitted.<br>`referral_files` - An array of URLs to PDF files for this referral.
