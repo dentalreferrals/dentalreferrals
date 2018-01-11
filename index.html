@@ -343,7 +343,7 @@
         <h1 id='introduction'>Introduction</h1>
 <p>Welcome to Dental Referrals API V2 Documentation!</p>
 
-<p>This page is a guide for software developers looking to integrate an external application with <a href="https://app.dental-referrals.org">Dental Referrals Web Application</a>.</p>
+<p>This page is a guide for software developers looking to integrate an external application with <a href="https://app.dental-referrals.org" target="_blank">Dental Referrals Web Application</a>.</p>
 
 <p>Each API method in this documentation comes with a sample command using <code>cURL</code>. You can view these code examples in the dark area to the right.</p>
 <h1 id='api-endpoints'>API Endpoints</h1><h3 id='staging'>Staging</h3>
@@ -361,15 +361,18 @@
 <pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/"</span>
 </code></pre>
 <blockquote>
+<p>Make sure to replace <code>&lt;YOUR_API_KEY&gt;</code> with your actual API key.</p>
+
+<p>For example, if you API key is <code>42a42a42a42a424a2aa4</code>, the call becomes:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=42a42a42a42a424a2aa4"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/"</span>
+</code></pre>
+<blockquote>
 <p>Expected response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="err">status</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<blockquote>
-<p>Make sure to replace <code>&lt;YOUR_API_KEY&gt;</code> with your actual API key.</p>
-</blockquote>
-
-<p>Dental Referrals API uses API keys to allow access to the API. You may request an API key by emailing <a href="mailto:office@dental-referrals.org">office@dental-referrals.org</a>.</p>
+<p>Dental Referrals API uses API keys to allow access to the API. An API key is a 10-character hexadecimal value like <code>42a42a42a42a424a2aa4</code>.You may request an API key by emailing <a href="mailto:office@dental-referrals.org">office@dental-referrals.org</a>.</p>
 
 <p>Every request to the API must include an API key in the header of the request as follows:</p>
 
@@ -391,14 +394,18 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <h3 id='authentication-errors'>Authentication Errors</h3>
 <p>If a request fails authentication for any reason, a HTTP 401 Not Authorized response is returned. </p>
 <h1 id='prepared-forms-api'>Prepared Forms API</h1>
-<p>A central use-case for the API is to transition patient data from an external system into medical forms inside <a href="https://app.dental-referrals.org">Dental Referrals Web Application</a> while saving the effort of copy-pasting the data between two systems.</p>
+<p>A central use-case for the API is to transition patient data from an external system into medical forms inside <a href="https://app.dental-referrals.org" target="_blank">Dental Referrals Web Application</a> while saving the effort of copy-pasting the data between two systems.</p>
 
 <p>When used in a desktop application, a usual integration workflow consist of 2 steps:</p>
 
 <ol>
-<li><p>Make a request to Dental Referrals API, passing patient data in the body of the request. In response, receive a unique URL to a medical form page inside <a href="https://app.dental-referrals.org">Dental Referrals Web Application</a> - that URL when opened will have all the submitted data pre-populated into its fields.</p></li>
+<li><p>Make a request to Dental Referrals API, passing patient data in the body of the request. In response, receive a unique URL to a medical form page inside <a href="https://app.dental-referrals.org" target="_blank">Dental Referrals Web Application</a> - that URL when opened will have all the submitted data pre-populated into its fields.</p></li>
 <li><p>Use user’s default browser or a built-in web view to open the unique medical form URL received in step 1 for user to submit the rest of the referral data.</p></li>
 </ol>
+
+<aside class="notice">
+   The URL of the prepared form contains a unique token so that when the URL is opened in the browser for the first time, it authenticates the user that's linked to the API key for a 24-hour in browser sesstion. The authentication token expires on first use, so if the URL is copy-pasted into a different browser, the system will as the user to authenticate.
+</aside>
 <h2 id='list-available-forms'>List Available Forms</h2><pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/available_forms"</span>
 </code></pre>
 <blockquote>
@@ -454,7 +461,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <td>String</td>
 <td>Yes</td>
 <td></td>
-<td>Medical form type. Must be one of the types returned by <a href="#list-available-forms">Available Forms</a> API method</td>
+<td>Medical form type. Must be one of the types returned by <a href="#list-available-forms">Available Forms</a> API method.</td>
 </tr>
 <tr>
 <td>patient_title</td>
@@ -538,7 +545,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <td>String</td>
 <td>No</td>
 <td></td>
-<td>Patient&#39;s work phone number</td>
+<td>Patient&#39;s work phone number.</td>
 </tr>
 <tr>
 <td>patient_phone_number</td>
@@ -590,13 +597,6 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <td>Patient&#39;s general practitioner&#39;s street address.</td>
 </tr>
 <tr>
-<td>patient_gp_street_address</td>
-<td>String</td>
-<td>No</td>
-<td></td>
-<td>Patient&#39;s general practitioner&#39;s street address.</td>
-</tr>
-<tr>
 <td>patient_gp_town</td>
 <td>String</td>
 <td>No</td>
@@ -622,7 +622,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <td>Numeric</td>
 <td>No</td>
 <td></td>
-<td>If set to <code>1</code>, the resulting medical form will have the Care Type set to <code>Urgent</code>, otherwise <code>Routine</code></td>
+<td>If set to <code>1</code>, the resulting medical form will have the Care Type set to <code>Urgent</code>, otherwise <code>Routine</code>.</td>
 </tr>
 <tr>
 <td>medical_history_drugs</td>
@@ -678,7 +678,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <tr>
 <td>status</td>
 <td>String</td>
-<td>One of: <code>success</code> or <code>error</code></td>
+<td>One of: <code>success</code> or <code>error</code>.</td>
 </tr>
 <tr>
 <td>prepared_form_url</td>
@@ -688,7 +688,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <tr>
 <td>urn</td>
 <td>String</td>
-<td><code>URN</code> code of the referral that will be associated with this record once the prepared form is submitted by the user</td>
+<td><code>URN</code> code of the referral that will be associated with this record once the prepared form is submitted by the user.</td>
 </tr>
 <tr>
 <td>ptguid</td>
@@ -712,7 +712,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
     </span><span class="s2">"ptguid"</span><span class="p">:</span><span class="s2">"NDJhNDJhNTJlOTZmOTE5YTdmYTc="</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This API method allows to save drafts of medical forms within Dental Referrals Web Application, linking these drafts to a user&#39;s account that is tied to the API key.</p>
+<p>This API method allows to save drafts of medical forms within <a href="https://app.dental-referrals.org" target="_blank">Dental Referrals Web Application</a>, linking these drafts to a user&#39;s account that is tied to the API key.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST &lt;API_ENDPOINT&gt;/save_draft</code></p>
 <h3 id='request-parameters'>Request Parameters</h3>
@@ -728,17 +728,17 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <tr>
 <td>status</td>
 <td>String</td>
-<td>One of: <code>success</code> or <code>error</code></td>
+<td>One of: <code>success</code> or <code>error</code>.</td>
 </tr>
 <tr>
 <td>draft_id</td>
 <td>Numeric</td>
-<td>The unique numeric reference of the draft within Dental Referrals Web Application.</td>
+<td>The unique numeric reference of the draft within <a href="https://app.dental-referrals.org" target="_blank">Dental Referrals Web Application</a>.</td>
 </tr>
 <tr>
 <td>urn</td>
 <td>String</td>
-<td><code>URN</code> code of the referral that will be associated with this record once the draft is submitted by the user</td>
+<td><code>URN</code> code of the referral that will be associated with this record once the draft is submitted by the user.</td>
 </tr>
 <tr>
 <td>ptguid</td>
@@ -760,16 +760,18 @@ Thus any software using the Dental Referrals API must provide a way for the end 
     </span><span class="s2">"referral_status"</span><span class="p">:</span><span class="s2">"Sent to: St Clements Dental Suite - Mr E Harunani"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"referrer_name"</span><span class="p">:</span><span class="s2">"Nitin Joshi"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"referral_reason"</span><span class="p">:</span><span class="s2">"Minor Oral Surgery"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"referral_files"</span><span class="p">:[</span><span class="s2">"LINK_1"</span><span class="p">,</span><span class="s2">"LINK_2"</span><span class="p">]</span><span class="w">
+    </span><span class="s2">"referral_files"</span><span class="p">:[</span><span class="w">
+        </span><span class="s2">"https://staging.dental-referrals.org/documents/TST0000001.pdf"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"https://staging.dental-referrals.org/documents/TST0000001_MH.pdf"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
 <p>Use this API method to check the status of one specific referral that:</p>
 
-<ol>
+<ul>
 <li>has been submitted through this API</li>
 <li>has been submitted using the API key linked to the same user that the API key for this request</li>
-</ol>
+</ul>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>GET &lt;API_ENDPOINT&gt;/referral_status</code></p>
 <h3 id='request-parameters'>Request Parameters</h3>
@@ -784,14 +786,8 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <tr>
 <td>urn</td>
 <td>String</td>
-<td>One of: <code>urn</code>, <code>ptguid</code> is required</td>
+<td>Yes</td>
 <td><code>URN</code> code of the referral to return the status for.</td>
-</tr>
-<tr>
-<td>ptguid</td>
-<td>String</td>
-<td>One of: <code>urn</code>, <code>ptguid</code> is required</td>
-<td><code>PTGUID</code> (<code>Patient GUID</code>) code of the referral to return the status for.</td>
 </tr>
 </tbody></table>
 <h3 id='response-format'>Response Format</h3>
@@ -851,7 +847,10 @@ Thus any software using the Dental Referrals API must provide a way for the end 
         </span><span class="s2">"referral_status"</span><span class="p">:</span><span class="s2">"Entered on System"</span><span class="p">,</span><span class="w"> 
         </span><span class="s2">"referrer_name"</span><span class="p">:</span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w"> 
         </span><span class="s2">"referral_reason"</span><span class="p">:</span><span class="s2">"Restorative"</span><span class="p">,</span><span class="w"> 
-        </span><span class="s2">"referral_files"</span><span class="p">:[</span><span class="s2">"LINK_1"</span><span class="p">,</span><span class="s2">"LINK_2"</span><span class="p">]</span><span class="w">
+        </span><span class="s2">"referral_files"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"https://staging.dental-referrals.org/documents/TST0000001.pdf"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"https://staging.dental-referrals.org/documents/TST0000001_MH.pdf"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
         </span><span class="p">},</span><span class="w">
 
         </span><span class="p">{</span><span class="w">
@@ -859,7 +858,9 @@ Thus any software using the Dental Referrals API must provide a way for the end 
         </span><span class="s2">"referral_status"</span><span class="p">:</span><span class="s2">"Sent to: St Clements Dental Suite"</span><span class="p">,</span><span class="w"> 
         </span><span class="s2">"referrer_name"</span><span class="p">:</span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w"> 
         </span><span class="s2">"referral_reason"</span><span class="p">:</span><span class="s2">"Restorative"</span><span class="p">,</span><span class="w"> 
-        </span><span class="s2">"referral_files"</span><span class="p">:[</span><span class="s2">"LINK_1"</span><span class="p">]</span><span class="w">
+        </span><span class="s2">"referral_files"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"https://staging.dental-referrals.org/documents/TST0000002.pdf"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -901,7 +902,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <tr>
 <td>referral_data</td>
 <td>JSON Array</td>
-<td>A JSON array of referral statuses, each status - a JSON object with the following fields:<br><code>referral_urn</code> - Unique 10-symbol identifier of the referral within Dental Referrals online system.<br><code>referral_status</code> - The current status of this referral in Dental Referrals online system.<br><code>referrer_name</code> - Name of the referring dentist.<br><code>referral_reason</code> - The reason this referral was submitted<br><code>referral_files</code> - an array of URLs to PDF files for this referral.</td>
+<td>A JSON array of referral statuses, each status - a JSON object with the following fields:<br><code>referral_urn</code> - Unique 10-symbol identifier of the referral within Dental Referrals online system.<br><code>referral_status</code> - The current status of this referral in Dental Referrals online system.<br><code>referrer_name</code> - Name of the referring dentist.<br><code>referral_reason</code> - The reason this referral was submitted.<br><code>referral_files</code> - An array of URLs to PDF files for this referral.</td>
 </tr>
 </tbody></table>
 <h2 id='referral-status-by-patient'>Referral Status By Patient</h2>
@@ -922,7 +923,10 @@ Thus any software using the Dental Referrals API must provide a way for the end 
         </span><span class="s2">"referral_status"</span><span class="p">:</span><span class="s2">"Entered on System"</span><span class="p">,</span><span class="w"> 
         </span><span class="s2">"referrer_name"</span><span class="p">:</span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w"> 
         </span><span class="s2">"referral_reason"</span><span class="p">:</span><span class="s2">"Restorative"</span><span class="p">,</span><span class="w"> 
-        </span><span class="s2">"referral_files"</span><span class="p">:[</span><span class="s2">"LINK_1"</span><span class="p">,</span><span class="s2">"LINK_2"</span><span class="p">]</span><span class="w">
+        </span><span class="s2">"referral_files"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"https://staging.dental-referrals.org/documents/TST0000001.pdf"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"https://staging.dental-referrals.org/documents/TST0000001_MH.pdf"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
         </span><span class="p">},</span><span class="w">
 
         </span><span class="p">{</span><span class="w">
@@ -930,7 +934,9 @@ Thus any software using the Dental Referrals API must provide a way for the end 
         </span><span class="s2">"referral_status"</span><span class="p">:</span><span class="s2">"Sent to: St Clements Dental Suite"</span><span class="p">,</span><span class="w"> 
         </span><span class="s2">"referrer_name"</span><span class="p">:</span><span class="s2">"Jane Doe"</span><span class="p">,</span><span class="w"> 
         </span><span class="s2">"referral_reason"</span><span class="p">:</span><span class="s2">"Restorative"</span><span class="p">,</span><span class="w"> 
-        </span><span class="s2">"referral_files"</span><span class="p">:[</span><span class="s2">"LINK_1"</span><span class="p">]</span><span class="w">
+        </span><span class="s2">"referral_files"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"https://staging.dental-referrals.org/documents/TST0000001.pdf"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -982,7 +988,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <tr>
 <td>referral_data</td>
 <td>JSON Array</td>
-<td>A JSON array of referral statuses, each status - a JSON object with the following fields:<br><code>referral_urn</code> - Unique 10-symbol identifier of the referral within Dental Referrals online system.<br><code>referral_status</code> - The current status of this referral in Dental Referrals online system.<br><code>referrer_name</code> - Name of the referring dentist.<br><code>referral_reason</code> - The reason this referral was submitted<br><code>referral_files</code> - an array of URLs to PDF files for this referral.</td>
+<td>A JSON array of referral statuses, each status - a JSON object with the following fields:<br><code>referral_urn</code> - Unique 10-symbol identifier of the referral within Dental Referrals online system.<br><code>referral_status</code> - The current status of this referral in Dental Referrals online system.<br><code>referrer_name</code> - Name of the referring dentist.<br><code>referral_reason</code> - The reason this referral was submitted.<br><code>referral_files</code> - An array of URLs to PDF files for this referral.</td>
 </tr>
 </tbody></table>
 <h1 id='uploading-files'>Uploading Files</h1>
@@ -999,7 +1005,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <blockquote>
 <p>Create a fileupload entity, to which further uploads will be linked:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/prepare_fileupload"</span>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/prepare_fileupload"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured as follows:</p>
@@ -1025,24 +1031,24 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <tr>
 <td>status</td>
 <td>String</td>
-<td>One of: <code>success</code> or <code>error</code></td>
+<td>One of: <code>success</code> or <code>error</code>.</td>
 </tr>
 <tr>
-<td>filupload_id</td>
+<td>fileupload_id</td>
 <td>Numeric</td>
-<td>The <code>FILEUPLOAD_ID</code> to be used in the call to <a href="#add-file">Add File</a> API method</td>
+<td>The <code>FILEUPLOAD_ID</code> to be used in the call to <a href="#add-file">Add File</a> API method.</td>
 </tr>
 </tbody></table>
 <h2 id='add-file'>Add File</h2>
 <blockquote>
 <p>Upload a file and link it to a previously prepared fileupload enpoint:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> -H <span class="s2">"Upload-Content-Type:image/png"</span> -H <span class="s2">"Upload-Filename:email_sample.png"</span> -H <span class="s2">"Upload-Kind:radiograph"</span> -H <span class="s2">"Upload-Date:29/01/2016"</span> -v -F <span class="nv">file</span><span class="o">=</span>@/home/user/file.png <span class="s2">"https://staging.dental-referrals.org/react4r/v2/fileupload/396/add_file"</span>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> -H <span class="s2">"Upload-Content-Type:image/jpeg"</span> -H <span class="s2">"Upload-Filename:file.jpg"</span> -H <span class="s2">"Upload-Kind:radiograph"</span> -H <span class="s2">"Upload-Date:29/01/2016"</span> -v -F <span class="nv">file</span><span class="o">=</span>@/home/user/file.jpg <span class="s2">"https://staging.dental-referrals.org/react4r/v2/fileupload/396/add_file"</span>
 </code></pre>
 <blockquote>
 <p>Expected response:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="err">status</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>With the <code>FILEUPLOAD_ID</code> obtained from <a href="#prepare-fileupload">Prepare Fileupload</a> API call, this method allows to upload files and linked them all to the same <code>FILEUPLOAD_ID</code>.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
@@ -1060,7 +1066,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <td><code>Upload-Content-Type</code></td>
 <td>Yes</td>
 <td></td>
-<td>MIME type of the uploaded file.</td>
+<td>MIME type of the uploaded file. At the moment, only <code>JPEG</code> files are supported, so must be set to <code>image/jpeg</code>.</td>
 </tr>
 <tr>
 <td><code>Upload-Filename</code></td>
@@ -1094,13 +1100,13 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <tr>
 <td>status</td>
 <td>String</td>
-<td>One of: <code>success</code> or <code>error</code></td>
+<td>One of: <code>success</code> or <code>error</code>.</td>
 </tr>
 </tbody></table>
 <h2 id='tying-everything-together'>Tying Everything Together</h2>
 <p>Now that files are uploaded to the server and tied to a single <code>&lt;FILEUPLOAD_ID&gt;</code>, simply use that <code>&lt;FILEUPLOAD_ID&gt;</code> as the value for <code>fileupload_id</code> parameter in <a href="#prepare-form">Prepare Form</a> and <a href="#save-draft">Save Draft</a> API methods.</p>
 <h1 id='webhooks'>Webhooks</h1>
-<p>When a referral is submitted to Dental Referrals Web Application, all medical forms are exported to PDF format and attached to the referral. The export to PDF happens in background queue after the referral is submitted and so isn&#39;t immediatelly available to the user. In order to assist the with collection of exported PDF forms, the <a href="#prepare-form">Prepare Form</a> and <a href="#save-draft">Save Draft</a> API methods accept a parameter called <code>files_ready_webhook_url</code> - a URL to trigger when the PDF forms become available for referrals submitted through the API.</p>
+<p>When a referral is submitted to <a href="https://app.dental-referrals.org" target="_blank">Dental Referrals Web Application</a>, all medical forms are exported to PDF format and attached to the referral. The export to PDF happens in background queue after the referral is submitted and so isn&#39;t immediatelly available to the user. In order to assist with collection of exported PDF forms, the <a href="#prepare-form">Prepare Form</a> and <a href="#save-draft">Save Draft</a> API methods accept a parameter called <code>files_ready_webhook_url</code> - a URL to trigger when the PDF forms become available for referrals submitted through the API.</p>
 
 <p>If <code>files_ready_webhook_url</code> is provided during a call to <a href="#prepare-form">Prepare Form</a> or <a href="#save-draft">Save Draft</a> API method, when the PDF files become available, the system will send a POST request to the specified URL with the following payload in JSON format: </p>
 
@@ -1111,6 +1117,11 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <h3 id='retry-policy'>Retry policy</h3>
 <p>If the webhook URL fails or returns a response code other than 200, we will retry 3 more times - in an hour, in 4 hours, and then in a day.</p>
 <h3 id='accessing-pdf-exports'>Accessing PDF exports</h3>
+<blockquote>
+<p>To fetch PDF exports, use:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Accept: application/json"</span> -H <span class="s2">"API_KEY:&lt;YOUR_API_KEY&gt;"</span> -O <span class="s2">"https://staging.dental-referrals.org/documents/show/attachments/1/pdfs/original/TST0000001_AdultRestorativeForm.pdf"</span>
+</code></pre>
 <p>In order to fetch the attachments using URLs that are sent to the <code>files_ready_webhook_url</code>, include an <code>Authorization: Token token=&lt;YOUR_API_KEY&gt;</code> header along with your request.</p>
 <h1 id='error-handling'>Error Handling</h1>
 <blockquote>
@@ -1223,7 +1234,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <tr>
 <td>9 Jan 2018</td>
 <td>Irina Zayats</td>
-<td>Initial version of documentation</td>
+<td>Initial version of documentation.</td>
 </tr>
 </tbody></table>
 
