@@ -1120,7 +1120,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <blockquote>
 <p>To fetch PDF exports, use:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Accept: application/json"</span> -H <span class="s2">"API_KEY:&lt;YOUR_API_KEY&gt;"</span> -O <span class="s2">"https://staging.dental-referrals.org/documents/show/attachments/1/pdfs/original/TST0000001_AdultRestorativeForm.pdf"</span>
+<pre class="highlight shell tab-shell"><code>curl --header <span class="s2">"Accept: application/json"</span> -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> -O <span class="s2">"https://staging.dental-referrals.org/documents/show/attachments/1/pdfs/original/TST0000001_AdultRestorativeForm.pdf"</span>
 </code></pre>
 <p>In order to fetch the attachments using URLs that are sent to the <code>files_ready_webhook_url</code>, include an <code>Authorization: Token token=&lt;YOUR_API_KEY&gt;</code> header along with your request.</p>
 <h1 id='error-handling'>Error Handling</h1>
