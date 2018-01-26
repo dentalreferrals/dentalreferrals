@@ -16,7 +16,7 @@ If the webhook URL fails or returns a response code other than 200, we will retr
 > To fetch PDF exports, use:
 
 ```shell
-curl --header "Accept: application/json" -H "API_KEY:<YOUR_API_KEY>" -O "https://staging.dental-referrals.org/documents/show/attachments/1/pdfs/original/TST0000001_AdultRestorativeForm.pdf"
+curl --header "Accept: application/json" -H "Authorization: Token token=<YOUR_API_KEY>" -O "https://staging.dental-referrals.org/documents/show/attachments/1/pdfs/original/TST0000001_AdultRestorativeForm.pdf"
 ```
 
 In order to fetch the attachments using URLs that are sent to the `files_ready_webhook_url`, include an `Authorization: Token token=<YOUR_API_KEY>` header along with your request.
