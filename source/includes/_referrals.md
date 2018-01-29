@@ -101,9 +101,9 @@ Use this API method to check the status of up to 100 referrals most recently sub
 
 ### Request Parameters
 
-Parameter | Type | Required | Value Bounds | Description
---------- | ---- | ---------| ------ | ------------
-count | Numeric | Yes | If larger than 100, will be set to 100 anyway | The number of most recent referrals to return statuses for.
+Parameter | Type | Required | Default | Value Bounds | Description
+--------- | ---- | ---------| ------- |------------- | ------------
+count | Numeric | No | 100 | If larger than 100, will be set to 100 anyway | Maximum number of recent patient's referrals to return statuses for.
 
 ### Response Format
 
