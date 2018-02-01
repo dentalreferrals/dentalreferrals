@@ -31,4 +31,5 @@ Code | Meaning
 --------- | -----------
 400  | Bad parameter value or required parameter is missing. Check `message` for more details.
 401  | Authorization error. Make sure you are passing your API key as part of the `Authorization` header. Refer to [Authentication](#authentication) section.
+404  | Entity not found. For example, you are making a call to [Add File](#add-file) API method with an expired `FILEUPLOAD_ID` (these expire after the prepared form has been submitted by user in the browser.)
 500 | An unhandled API error has occurred. Please contact [API administrators](mailto:office@dental-referrals.org) to report.
