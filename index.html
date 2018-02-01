@@ -1174,6 +1174,10 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <td>Authorization error. Make sure you are passing your API key as part of the <code>Authorization</code> header. Refer to <a href="#authentication">Authentication</a> section.</td>
 </tr>
 <tr>
+<td>404</td>
+<td>Entity not found. For example, you are making a call to <a href="#add-file">Add File</a> API method with an expired <code>FILEUPLOAD_ID</code> (these expire after the prepared form has been submitted by user in the browser.)</td>
+</tr>
+<tr>
 <td>500</td>
 <td>An unhandled API error has occurred. Please contact <a href="mailto:office@dental-referrals.org">API administrators</a> to report.</td>
 </tr>
