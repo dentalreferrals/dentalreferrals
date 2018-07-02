@@ -69,8 +69,8 @@ This API method prepares a medical form of a given type by pre-populating patien
 
 Parameter | Type | Required | Default | Description
 --------- | ---- | ---------| ------- | -----------
-system_type | String | No | WD | Identifies which system is using the API. One of: `WD`, `WT`, `PD`, `PC`, `DN`, `DT`.
-form_type | String | Yes | | Medical form type. Must be one of the types returned by [Available Forms](#list-available-forms) API method.
+system_type | String | No | WD | Identifies which system is using the API. One of: `WD`, `WT`, `PD`, `PC`, `DN`, `DT`, `SE`.
+form_type | String | No | | Medical form type. If provided, must be one of the types returned by [Available Forms](#list-available-forms) API method. If you are passing `form_type`=`SE` then this parameter is optional (the system will allow the user to select the form type in the browser once the prepared form URL is opened.) For all other system types, `form_type` parameter is required. 
 patient_title | String | No | | Patient's title. Must be one of: `Mr`, `Mrs`, `Miss`, `Master`, `Dr`.
 patient_first_name | String | No | | Patient's first name.
 patient_last_name | String | No | | Patient's last name.
