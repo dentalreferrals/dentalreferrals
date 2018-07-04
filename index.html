@@ -459,9 +459,9 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <tr>
 <td>form_type</td>
 <td>String</td>
-<td>No</td>
+<td>Yes*</td>
 <td></td>
-<td>Medical form type. If provided, must be one of the types returned by <a href="#list-available-forms">Available Forms</a> API method. If you are passing <code>form_type</code>=<code>SE</code> then this parameter is optional (the system will allow the user to select the form type in the browser once the prepared form URL is opened.) For all other system types, <code>form_type</code> parameter is required.</td>
+<td>Medical form type. Must be one of the types returned by <a href="#list-available-forms">Available Forms</a> API method. <br><br>* If you are passing <code>form_type</code>=<code>SE</code> then this parameter is optional (the system will allow the user to select the form type in the browser once the prepared form URL is opened.) For all other system types, <code>form_type</code> parameter is required.</td>
 </tr>
 <tr>
 <td>patient_title</td>
