@@ -5,7 +5,7 @@
 > Prepare an Adult Restorative Referral form with pre-populated patient data:
 
 ```shell
-curl -H "Authorization: Token token=<YOUR_API_KEY>" --data "form_type=AdultRestorativeForm&patient_title=Mr&patient_first_name=John&patient_last_name=Doe&patient_identifier=1" "https://staging.dental-referrals.org/react4r/v2/save_draft"
+curl -H "Authorization: Token token=<YOUR_API_KEY>" --data "form_type=AdultRestorativeForm&patient_title=Mr&patient_first_name=John&patient_last_name=Doe&patient_identifier=1&patient_dob=10/10/2010" "https://staging.dental-referrals.org/react4r/v2/save_draft"
 ```
 
 > The above command returns JSON structured as follows:

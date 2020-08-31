@@ -9,7 +9,7 @@ When used in a desktop application, a usual integration workflow consist of 2 st
 2. Use user's default browser or a built-in web view to open the unique medical form URL received in step 1 for user to submit the rest of the referral data.
 
 <aside class="notice">
-   The URL of the prepared form contains a unique token so that when the URL is opened in the browser for the first time, it authenticates the user that's linked to the API key for a 24-hour in browser sesstion. The authentication token expires on first use, so if the URL is copy-pasted into a different browser, the system will as the user to authenticate.
+   The URL of the prepared form contains a unique token so that when the URL is opened in the browser for the first time, it authenticates the user that's linked to the API key for a 24-hour in browser session. The authentication token expires on first use, so if the URL is copy-pasted into a different browser, the system will as the user to authenticate.
 </aside>
 
 ## List Available Forms
@@ -45,7 +45,7 @@ The response is an array of medical form types. See example response in the righ
 > Prepare an Adult Restorative Referral form with pre-populated patient data:
 
 ```shell
-curl -H "Authorization: Token token=<YOUR_API_KEY>" --data "form_type=AdultRestorativeForm&patient_title=Mr&patient_first_name=John&patient_last_name=Doe&patient_identifier=1" "https://staging.dental-referrals.org/react4r/v2/prepare_form"
+curl -H "Authorization: Token token=<YOUR_API_KEY>" --data "form_type=AdultRestorativeForm&patient_title=Mr&patient_first_name=John&patient_last_name=Doe&patient_identifier=1&patient_dob=10/10/2010" "https://staging.dental-referrals.org/react4r/v2/prepare_form"
 ```
 
 > The above command returns JSON structured as follows:
@@ -55,7 +55,7 @@ curl -H "Authorization: Token token=<YOUR_API_KEY>" --data "form_type=AdultResto
     "status":"success",
     "prepared_form_url":"https://staging.dental-referrals.org/prepared_forms/show/d090e3dd-614f-47f3-8bc7-e403c1a2936e", 
     "urn":"TST0000001", 
-    "ptguid":"NDJhNDJhNTJlOTZmOTE5YTdmYTc=" 
+    "ptguid":"NDJhNDJhNTJlOTZmOTE5YTdmYTc="
 }
 ```
 
@@ -70,11 +70,11 @@ This API method prepares a medical form of a given type by pre-populating patien
 Parameter | Type | Required | Default | Description
 --------- | ---- | ---------| ------- | -----------
 system_type | String | No | WD | Identifies which system is using the API. One of: `WD`, `WT`, `PD`, `PC`, `DN`, `DT`, `SE`.
-form_type | String | Yes* | | Medical form type. Must be one of the types returned by [Available Forms](#list-available-forms) API method. <br><br>* If you are passing `form_type`=`SE` then this parameter is optional (the system will allow the user to select the form type in the browser once the prepared form URL is opened.) For all other system types, `form_type` parameter is required. 
+form_type | String | Yes* | | Medical form type. Must be one of the types returned by [Available Forms](#list-available-forms) API method. <br><br>* If you are passing `system_type`=`SE` then this parameter is optional (the system will allow the user to select the form type in the browser once the prepared form URL is opened.) For all other system types, `form_type` parameter is required. 
 patient_title | String | No | | Patient's title. Must be one of: `Mr`, `Mrs`, `Miss`, `Master`, `Dr`.
 patient_first_name | String | No | | Patient's first name.
 patient_last_name | String | No | | Patient's last name.
-patient_dob | String | No || Patient’s date of birth, in the following format: `DD/MM/YYYY`.
+patient_dob | String | Yes || Patient’s date of birth, in the following format: `DD/MM/YYYY`.
 patient_postcode | String | No || Patient's postcode.
 patient_address_line_1 | String | No || Patient's address line 1. If provided, will be concatenated with the other `address_line_x` parameters into a single address field on the medical form.
 patient_address_line_2 | String | No || Patient's address line 2. If provided, will be concatenated with the other `address_line_x` parameters into a single address field on the medical form.
