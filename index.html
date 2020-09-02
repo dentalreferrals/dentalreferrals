@@ -404,7 +404,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 </ol>
 
 <aside class="notice">
-   The URL of the prepared form contains a unique token so that when the URL is opened in the browser for the first time, it authenticates the user that's linked to the API key for a 24-hour in browser sesstion. The authentication token expires on first use, so if the URL is copy-pasted into a different browser, the system will as the user to authenticate.
+   The URL of the prepared form contains a unique token so that when the URL is opened in the browser for the first time, it authenticates the user that's linked to the API key for a 24-hour in browser session. The authentication token expires on first use, so if the URL is copy-pasted into a different browser, the system will as the user to authenticate.
 </aside>
 <h2 id='list-available-forms'>List Available Forms</h2><pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/available_forms"</span>
 </code></pre>
@@ -424,7 +424,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <blockquote>
 <p>Prepare an Adult Restorative Referral form with pre-populated patient data:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> --data <span class="s2">"form_type=AdultRestorativeForm&amp;patient_title=Mr&amp;patient_first_name=John&amp;patient_last_name=Doe&amp;patient_identifier=1"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/prepare_form"</span>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> --data <span class="s2">"form_type=AdultRestorativeForm&amp;patient_title=Mr&amp;patient_first_name=John&amp;patient_last_name=Doe&amp;patient_identifier=1&amp;patient_dob=10/10/2010"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/prepare_form"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured as follows:</p>
@@ -433,7 +433,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
     </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"prepared_form_url"</span><span class="p">:</span><span class="s2">"https://staging.dental-referrals.org/prepared_forms/show/d090e3dd-614f-47f3-8bc7-e403c1a2936e"</span><span class="p">,</span><span class="w"> 
     </span><span class="s2">"urn"</span><span class="p">:</span><span class="s2">"TST0000001"</span><span class="p">,</span><span class="w"> 
-    </span><span class="s2">"ptguid"</span><span class="p">:</span><span class="s2">"NDJhNDJhNTJlOTZmOTE5YTdmYTc="</span><span class="w"> 
+    </span><span class="s2">"ptguid"</span><span class="p">:</span><span class="s2">"NDJhNDJhNTJlOTZmOTE5YTdmYTc="</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This API method prepares a medical form of a given type by pre-populating patient data into corresponding fields and assigning a unique URL to this pre-populated form.</p>
@@ -461,7 +461,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <td>String</td>
 <td>Yes*</td>
 <td></td>
-<td>Medical form type. Must be one of the types returned by <a href="#list-available-forms">Available Forms</a> API method. <br><br>* If you are passing <code>form_type</code>=<code>SE</code> then this parameter is optional (the system will allow the user to select the form type in the browser once the prepared form URL is opened.) For all other system types, <code>form_type</code> parameter is required.</td>
+<td>Medical form type. Must be one of the types returned by <a href="#list-available-forms">Available Forms</a> API method. <br><br>* If you are passing <code>system_type</code>=<code>SE</code> then this parameter is optional (the system will allow the user to select the form type in the browser once the prepared form URL is opened.) For all other system types, <code>form_type</code> parameter is required.</td>
 </tr>
 <tr>
 <td>patient_title</td>
@@ -487,7 +487,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <tr>
 <td>patient_dob</td>
 <td>String</td>
-<td>No</td>
+<td>Yes</td>
 <td></td>
 <td>Patient’s date of birth, in the following format: <code>DD/MM/YYYY</code>.</td>
 </tr>
@@ -700,7 +700,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <blockquote>
 <p>Prepare an Adult Restorative Referral form with pre-populated patient data:</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> --data <span class="s2">"form_type=AdultRestorativeForm&amp;patient_title=Mr&amp;patient_first_name=John&amp;patient_last_name=Doe&amp;patient_identifier=1"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/save_draft"</span>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"Authorization: Token token=&lt;YOUR_API_KEY&gt;"</span> --data <span class="s2">"form_type=AdultRestorativeForm&amp;patient_title=Mr&amp;patient_first_name=John&amp;patient_last_name=Doe&amp;patient_identifier=1&amp;patient_dob=10/10/2010"</span> <span class="s2">"https://staging.dental-referrals.org/react4r/v2/save_draft"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured as follows:</p>
@@ -1139,7 +1139,7 @@ Thus any software using the Dental Referrals API must provide a way for the end 
     </span><span class="s2">"message"</span><span class="p">:</span><span class="s2">"Not Authorized. Check that you are providing a valid API key and that you have access to requested resource."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>If a request is invalid or is missing required parameters, a standard HTTP 400 response code will be returned. Additionally, a custom error message response will be returned with additional clarifications.</p>
+<p>If a request is invalid or is missing required parameters, a standard HTTP 400 or 422 response code will be returned. Additionally, a custom error message response will be returned with additional clarifications.</p>
 <h3 id='error-response-format'>Error Response Format</h3>
 <p>In case of an error, in addition to an error status code, the response will contain the following fields:</p>
 
@@ -1176,6 +1176,10 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <tr>
 <td>404</td>
 <td>Entity not found. For example, you are making a call to <a href="#add-file">Add File</a> API method with an expired <code>FILEUPLOAD_ID</code> (these expire after the prepared form has been submitted by user in the browser.)</td>
+</tr>
+<tr>
+<td>422</td>
+<td>Required <code>patient_dob</code> parameter is missing.</td>
 </tr>
 <tr>
 <td>500</td>
@@ -1237,6 +1241,11 @@ Thus any software using the Dental Referrals API must provide a way for the end 
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td><nobr>1 Sep 2020</nobr></td>
+<td>Serhiy Pustovit</td>
+<td><code>patient_dob</code> now is required field for <code>prepare_form</code> and <code>save_draft</code> endpoints. 422 error can be returned on invalid DOB. Fixed typos.</td>
+</tr>
 <tr>
 <td><nobr>2 Jul 2018</nobr></td>
 <td>Irina Zayats</td>
