@@ -69,7 +69,7 @@ With the `FILEUPLOAD_ID` obtained from [Prepare Fileupload](#prepare-fileupload)
 
 Header | Required | Default | Description
 ------ | -------- | ------- | ------------
-`Upload-Content-Type` | Yes | | MIME type of the uploaded file. At the moment, only `JPEG` files are supported, so must be set to `image/jpeg`.
+`Upload-Content-Type` | Yes | | MIME type of the uploaded file. Supported kinds are `image/jpeg`, `image/jpg`, `image/bmp`, `image/tiff`, `image/png`, `text/rtf`, `application/pdf`, `application/msword` - for doc files, and `application/vnd.openxmlformats-officedocument.wordprocessingml.document` - for docx files.
 `Upload-Filename`| Yes | | Name of the original file, with extension.
 `Upload-Kind` | No | `other` | Type of the upload. At the moment, only 2 values are allowed: `radiograph` and `other`.
 `Upload-Date`| Required if `Upload-Kind` set to `radiograph` | | Date when the radiograph has been taken, in `DD/MM/YYYY` format.
