@@ -76,6 +76,7 @@ patient_first_name | String | No | | Patient's first name.
 patient_last_name | String | No | | Patient's last name.
 patient_dob | String | Yes || Patient’s date of birth, in the following format: `DD/MM/YYYY`.
 patient_postcode | String | No || Patient's postcode.
+patient_gp_code | String | No || GMP's code.
 patient_address_line_1 | String | No || Patient's address line 1. If provided, will be concatenated with the other `address_line_x` parameters into a single address field on the medical form.
 patient_address_line_2 | String | No || Patient's address line 2. If provided, will be concatenated with the other `address_line_x` parameters into a single address field on the medical form.
 patient_address_line_3 | String | No || Patient's address line 3. If provided, will be concatenated with the other `address_line_x` parameters into a single address field on the medical form.
